@@ -7,6 +7,7 @@ import LandingPage from "./comp/LandingPage";
 import SignUpPage from "./signup/signUpPage";
 import LoginPage from "./signup/LoginPage";
 
+
 function App() {
   return (
     <>
@@ -14,7 +15,7 @@ function App() {
         <Routes>
         {/* <Route path="/" element={<Verify />}></Route> */}
         <Route path="/" element={<LoginPage />}></Route>
-          <Route path="/sign" element={<SignUpPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
           <Route path="/home" element={<LandingPage />}></Route>
         </Routes>
       </BrowserRouter>

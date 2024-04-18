@@ -3,14 +3,14 @@ import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
 import "./signup.css";
 import char from "../comp/assets/char.png";
-
+import { useNavigate } from "react-router-dom";
 const SignUpPage = () => {
     // State variables to hold form data
     const [name, setName] = useState("");
     const [mobile, setMobile] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const navigate = useNavigate();
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,21 +25,24 @@ const SignUpPage = () => {
 
         try {
             // Make POST request to API endpoint
-            const response = await fetch('http://3.111.17.212:3001/api/v1/user/signup', {
+            const response = await fetch('https://3.111.17.212:3001/api/v1/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestBody)
             });
-
+            const responseData = await response.json();
+            console.log('Signup successful:', responseData.status);
             // Handle response
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log('Signup successful:', responseData);
-                // Handle successful signup
+            if (responseData.status==200) {
+               
+                alert('Registration successfully completed');
+                navigate("/");
+               
             } else {
-                console.error('Signup failed');
+                alert('Registration Faild Please enter valid details');
+
                 // Handle failed signup
             }
         } catch (error) {
